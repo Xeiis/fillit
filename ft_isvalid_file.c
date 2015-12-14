@@ -6,15 +6,15 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:29:07 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/10 19:33:06 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/14 17:54:04 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <libft.h>
-#include <fillit.h>
+#include "libft/libft.h"
+#include "fillit.h"
 
 static t_tetrimino	ft_statement(size_t len, t_tetrimino *tetriminos)
 {
@@ -62,8 +62,8 @@ static t_tetrimino	ft_read_loop(int fd, char *buf, size_t x, size_t y)
 			}
 			if (buf[i] == '#' && buf[i] != '.' && cell < 4)
 			{
-				tetriminos[j]->lpos[i].x = x;
-				tetriminos[j]->lpos[i].y = y;
+				tetriminos[j]->l_pos[i].x = x;
+				tetriminos[j]->l_pos[i].y = y;
 				++cell;
 			}
 			else if (buf[i] != '#' || buf[i] != '.' || cell > 4)

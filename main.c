@@ -6,13 +6,13 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/10 20:28:14 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/14 17:52:58 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include "libft.h"
+#include "libft/libft.h"
 
 #define DEFAULT   "\033[0m"
 #define HIGHLIGHT "\033[1m"
@@ -31,7 +31,7 @@ double				ft_sqrt(double n, double i);
 
 int					main(int argc, char **argv)
 {
-	size_t			i;
+	int		i;
 
 	i = 1;
 	printf(HIGHLIGHT PURPLE "\t\t\t/* ************************************************************************** */\n");
@@ -47,7 +47,7 @@ int					main(int argc, char **argv)
 	else
 		while (i < argc)
 		{
-			printf("[Square(" CYAN "%lu" DEFAULT  ")]{nbr of tetrimino(s) = %i}\t\t=>\t\tMin square size[" CYAN "%zu x %zu" DEFAULT "]\n", i, ft_atoi(argv[i]), (size_t)(ft_sqrt((ft_atoi(argv[i]) * 4), 0) + 0.5), (size_t)(ft_sqrt((ft_atoi(argv[i]) * 4), 0) + 0.5));
+			printf("[Square(" CYAN "%d" DEFAULT  ")]{nbr of tetrimino(s) = %i}\t\t=>\t\tMin square size[" CYAN "%zu x %zu" DEFAULT "]\n", i, ft_atoi(argv[i]), (size_t)(ft_sqrt((ft_atoi(argv[i]) * 4), 0) + 0.5), (size_t)(ft_sqrt((ft_atoi(argv[i]) * 4), 0) + 0.5));
 			++i;
 		}
 	return (0);

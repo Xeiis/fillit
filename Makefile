@@ -6,10 +6,11 @@
 #    By: ldubos <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:26:37 by dchristo          #+#    #+#              #
-#    Updated: 2015/12/14 17:31:21 by dchristo         ###   ########.fr        #
+#    Updated: 2015/12/14 17:49:25 by dchristo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = fillit
 
 CC = gcc
 
@@ -24,7 +25,6 @@ LIB = libft/libft.a
 all: $(NAME) 
  
 $(NAME): 
-	@git clone vogsphere@vogsphere.42.fr:intra/2015/activities/libft/dchristo2 libft
 	@cd libft ; $(MAKE) -f Makefile
 	@$(CC) $(FLAGS) -c $(SRC)
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIB)
@@ -48,7 +48,6 @@ clean:
 fclean:	clean
 	rm -f $(NAME)
 	@cd libft ; $(PHONY make fclean)	
-	rm -rf libft
 	
 re:	fclean all write
 
