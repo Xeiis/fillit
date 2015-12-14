@@ -1,10 +1,12 @@
 # fillit
-Projet TILLIF
+Projet FILLIT
 
-TO DO
-Read argv 1 --
-verifier les pieces  
-enregistrer les pieces --
+Authors : ldubos dchristo
 
-faire le backtrack
-afficher la solution
+A faire | A tester | Fait
+--------|----------|-----
+Lecture |          |     
+Detection |        |
+Verification |     |
+Resolution |       |
+Affichage |        |
