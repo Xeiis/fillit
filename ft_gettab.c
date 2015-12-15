@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 08:51:20 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/15 16:36:45 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "fillit.h"
-#include "test/libft.h"
+#include "libft/libft.h"
 
 int					ft_test(t_tetrimino tetrimino)
 {
-	size_t			i;
-	size_t			x_d;
-	size_t			y_d;
+	int				i;
+	int				x_d;
+	int				y_d;
 
 	i = 0;
 	while (i < 3)
@@ -81,19 +81,18 @@ t_tetrimino			*ft_read(int fd)
 	t_tetrimino		*ret;
 
 	i = 0;
-	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)))
-		return (NULL);
+	//if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)))
+	//	return (NULL);
+	// faire la liste chaines
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		if (!(ret[i] = malloc(sizeof(t_tetrimino))))
-			return (NULL);
 		ft_statement(buf, ret[i]);
 		ret[i].c = 'A' + i;
 		++i;
 	}
 }
 
-t_tetrimino			ft_gettab(const char *path)
+t_tetrimino			*ft_gettab(const char *path)
 {
 	int				fd;
 
