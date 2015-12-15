@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 17:44:37 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/10 20:27:01 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/15 19:35:25 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 double				ft_sqrt(double n, double i)
 {
-	if(((n * 10000) - (i * i)) <= 0)
-		return(i/100);
+	if (((n * 10000) - (i * i)) <= 0)
+		return (i / 100);
 	else
-		return(ft_sqrt(n, i + 1));
+		return (ft_sqrt(n, i + 1));
 }

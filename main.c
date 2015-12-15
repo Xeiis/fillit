@@ -6,12 +6,14 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 17:40:05 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/15 19:34:53 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "libft/libft.h"
 #include "fillit.h"
 
@@ -53,5 +55,17 @@ void				ft_square(int argc, char **argv)
 
 int					main(int argc, char **argv)
 {
-	ft_square(argc, argv);
+	t_tetrimino		*t;
+	if (!(t = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
+		return (0);
+	//ft_square(argc, argv); // calculer le nombre de tetris pour utiliser la fonction
+	if (argc != 2)
+		write(1, "error\n", 6);
+	else
+		t = ft_gettab(argv[1]);
+	if(!t)
+		write(1, "error\n", 6);
+	else
+		write(1, "ok\n", 3);
+	return (0);
 }

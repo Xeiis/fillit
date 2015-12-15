@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 17:05:48 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/15 19:38:52 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "fillit.h"
 #include "libft/libft.h"
 
-int					ft_test(t_tetrimino tetrimino)
+/*static	int					ft_test(t_tetrimino tetrimino)
 {
 	int				i;
 	int				x_d;
@@ -43,27 +43,31 @@ int					ft_test(t_tetrimino tetrimino)
 			return (0);
 	}
 	return (1);
+}*/
+
+static	void				ft_init(size_t *x, size_t *y, size_t *i,
+									size_t *boucle)
+{
+	*x = 0;
+	*y = 0;
+	*i = 0;
+	*boucle = 0;
 }
 
-void				ft_statement(char *str, t_tetrimino tetrimino)
+static	int					ft_statement(char *str, t_tetrimino tetrimino)
 {
 	size_t			x;
 	size_t			y;
 	size_t			i;
+	size_t			boucle;
 
-	x = 0;
-	y = 0;
-	i = 0;
-	while (*str++)
+	ft_init(&x, &y, &i, &boucle);
+	while (*++str && i < 5 && (*str == '#' || *str == '.' || *str == '\n'))
+	{
 		if (*str == '\n')
 		{
 			x = 0;
 			++y;
-		}
-		else if (*str != '#' && *str != '.' && *str && i < 4)
-		{
-			write(1, "error\n", 6);
-			break ;
 		}
 		else if (*str == '#' && *str != '.')
 		{
@@ -72,9 +76,15 @@ void				ft_statement(char *str, t_tetrimino tetrimino)
 		}
 		else
 			++x;
+		boucle++;
+	}
+	if ((*--str != '#' && *str != '.' && *str != '\n') || i > 4 ||
+			(boucle != 21 && boucle != 20))
+		return (0);
+	return (1);
 }
 
-t_tetrimino			*ft_read(int fd)
+static	t_tetrimino			*ft_read(int fd)
 {
 	char			*buf;
 	size_t			i;
@@ -88,11 +98,14 @@ t_tetrimino			*ft_read(int fd)
 		return (NULL);
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		ft_statement(buf, *ret);
+		if (!(ft_statement(--buf, *ret)))
+			return (NULL);
 		ret->c = 'A' + i;
 		if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
 			return (NULL);
 		ret->next = tmp;
+		ret = ret->next;
+		ft_bzero(buf, BUF_S);
 		++i;
 	}
 	return (ret);
