@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/14 19:47:56 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/15 16:30:25 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "fillit.h"
-#include "test/libft.h"
+#include "libft/libft.h"
 
 int				ft_test(t_tetrimino tetrimino)
 {
-	size_t		i;
-	size_t		x_d;
-	size_t		y_d;
+	int			i;
+	int			x_d;
+	int			y_d;
 
 	i = 0;
 	while (i < 3)
@@ -82,7 +82,7 @@ t_tetrimino			*ft_read(int fd)
 	t_tetrimino		*ret;
 
 	i = 0;
-	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)));
+	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)))
 			return (NULL);
 	while (read(fd, buf, BUF_S) != 0)
 	{

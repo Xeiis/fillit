@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:29:07 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/14 17:54:04 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/15 16:30:53 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static t_tetrimino	ft_statement(size_t len, t_tetrimino *tetriminos)
 	t_tetrimino		*ret;
 	size_t			i;
 
-	ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * len);
-	if (!ret)
+	if(!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * len)))
 		return (NULL);
 	i = 0;
 	while (i < len)
