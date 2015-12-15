@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/14 19:47:56 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/15 08:51:20 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@
 #include "fillit.h"
 #include "test/libft.h"
 
-int				ft_test(t_tetrimino tetrimino)
+int					ft_test(t_tetrimino tetrimino)
 {
-	size_t		i;
-	size_t		x_d;
-	size_t		y_d;
+	size_t			i;
+	size_t			x_d;
+	size_t			y_d;
 
 	i = 0;
 	while (i < 3)
 	{
 		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
 		y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 1].y;
-		if (x_d >= -1 && x_d <= 1 && y_d == 0)
-			++i;
-		else if (y_d >= -1 && y_d <= 1 && x_d == 0)
+		if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
+			(y_d >= -1 && y_d <= 1 && x_d == 0))
 			++i;
 		else if (i >= 1)
 		{
@@ -46,7 +45,7 @@ int				ft_test(t_tetrimino tetrimino)
 	return (1);
 }
 
-void			ft_statement(char *str, t_tetrimino tetrimino)
+void				ft_statement(char *str, t_tetrimino tetrimino)
 {
 	size_t			x;
 	size_t			y;
@@ -64,7 +63,7 @@ void			ft_statement(char *str, t_tetrimino tetrimino)
 		else if (*str != '#' && *str != '.' && *str && i < 4)
 		{
 			write(1, "error\n", 6);
-			break;
+			break ;
 		}
 		else if (*str == '#' && *str != '.')
 		{
@@ -82,11 +81,11 @@ t_tetrimino			*ft_read(int fd)
 	t_tetrimino		*ret;
 
 	i = 0;
-	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)));
-			return (NULL);
+	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)))
+		return (NULL);
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		if (!(ret[i] = malloc(sizeof(t_tetrimino))));
+		if (!(ret[i] = malloc(sizeof(t_tetrimino))))
 			return (NULL);
 		ft_statement(buf, ret[i]);
 		ret[i].c = 'A' + i;

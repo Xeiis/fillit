@@ -1,21 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
+/*   Updated: 2015/12/14 19:50:11 by ldubos           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include <string.h>
+# define BUF_S 21
 
-# define BUF_S 20
-
-typedef struct		s_vector2
+typedef struct			s_vector2
 {
-	size_t			x;
-	size_t			y;
-}					t_vector2;
+	int					x;
+	int					y;
+}						t_vector2;
 
-typedef struct		s_tetrimino
+typedef struct			s_tetrimino
 {
-	t_vector2		l_pos[4];
-	t_vector2		w_pos;
-	char			c;
-}					t_tetrimino;
+	t_vector2			c_pos[4];
+	t_vector2			w_pos;
+	struct s_tetrimino 	*next;
+	char				c;
+}						t_tetrimino;
 
 #endif
