@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 16:53:21 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/15 17:32:07 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct			s_tetrimino
 	struct s_tetrimino 	*next;
 	char				c;
 }						t_tetrimino;
+
+double				ft_sqrt(double n, double i);
 
 #endif
