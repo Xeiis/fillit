@@ -6,7 +6,7 @@
 #    By: ldubos <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:26:37 by dchristo          #+#    #+#              #
-#    Updated: 2015/12/15 16:49:23 by dchristo         ###   ########.fr        #
+#    Updated: 2015/12/15 17:25:15 by dchristo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,11 @@ $(NAME):
 
 clean:	
 	rm -rf $(OBJS)
-	@cd libft ; $(PHONY make clean)
+	@cd libft ; $(MAKE) clean -f Makefile
 
 fclean:	clean
 	rm -f $(NAME)
-	@cd libft ; $(PHONY make fclean)	
+	@cd libft ; $(MAKE) fclean -f Makefile	
 	
 re:	fclean all write
 
