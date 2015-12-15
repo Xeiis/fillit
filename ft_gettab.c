@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 16:50:43 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/15 17:05:48 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,23 @@ t_tetrimino			*ft_read(int fd)
 	char			*buf;
 	size_t			i;
 	t_tetrimino		*ret;
+	t_tetrimino		*tmp;
 
 	i = 0;
-	//if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino) * 26)))
-	//	return (NULL);
-	// faire la liste chaines
+	buf = ft_strnew(BUF_S);
+	ft_bzero(buf, BUF_S);
+	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
+		return (NULL);
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		ft_statement(buf, ret[i]);
-		ret[i].c = 'A' + i;
+		ft_statement(buf, *ret);
+		ret->c = 'A' + i;
+		if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
+			return (NULL);
+		ret->next = tmp;
 		++i;
 	}
+	return (ret);
 }
 
 t_tetrimino			*ft_gettab(const char *path)
