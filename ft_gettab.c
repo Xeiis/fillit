@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 17:43:16 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/16 17:55:18 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ static	int					ft_test(t_tetrimino tetrimino)
 	int						y_d;
 
 	i = 0;
-	while (i < 4)
+	while (i < 3)
 	{
 		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
 		y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 1].y;
+		printf("1 |%d x_a => [%d] | x_b => [%d]\n",i , tetrimino.c_pos[i].x, tetrimino.c_pos[i + 1].x);
+		printf("1 |%d y_a => [%d] | y_b => [%d]\n",i , tetrimino.c_pos[i].y, tetrimino.c_pos[i + 1].y);
 		if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 			(y_d >= -1 && y_d <= 1 && x_d == 0))
 			++i;
@@ -36,18 +38,24 @@ static	int					ft_test(t_tetrimino tetrimino)
 		{
 			x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 2].x;
 			y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 2].y;
-			printf("x_d => [%d]\n", x_d);
-			printf("x_a => [%d] | x_b => [%d]\n", tetrimino.c_pos[i - 1].x, tetrimino.c_pos[i + 1].x);
-			printf("y_d => [%d]\n", y_d);
-			printf("y_a => [%d] | y_b => [%d]\n", tetrimino.c_pos[i - 1].y, tetrimino.c_pos[i + 1].y);
+			printf("2 | x_a => [%d] | x_b => [%d]\n", tetrimino.c_pos[i].x, tetrimino.c_pos[i + 2].x);
+			printf("2 | y_a => [%d] | y_b => [%d]\n", tetrimino.c_pos[i].y, tetrimino.c_pos[i + 2].y);
 			if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 				(y_d >= -1 && y_d <= 1 && x_d == 0))
 				++i;
 			else
-				return (0);
+			{
+				printf("x_d => [%d]\n", x_d);
+				printf("y_d => [%d]\n", y_d);
+				return (0);	
+			}
 		}
 		else
+		{
+			printf("x_d => [%d]\n", x_d);
+			printf("y_d => [%d]\n", y_d);
 			return (0);
+		}
 	}
 	return (1);
 }
@@ -77,6 +85,8 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 		}
 		else if (*str == '#' && *str != '.')
 		{
+			printf("[%d]x = %d\n", i,x);
+			printf("[%d]y = %d\n", i,y);
 			tetrimino->c_pos[i].x = x++;
 			tetrimino->c_pos[i++].y = y;
 		}
