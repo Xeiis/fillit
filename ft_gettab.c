@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 15:05:40 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/16 15:45:30 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ static	int					ft_test(t_tetrimino tetrimino)
 	i = 0;
 	while (i < 3)
 	{
+		printf(" [%d]x = %d, [%d]x =%d\n",i,tetrimino.c_pos[i].x,i+1,tetrimino.c_pos[i+1].x);
+		printf(" [%d]y = %d, [%d]y =%d\n",i,tetrimino.c_pos[i].y,i+1,tetrimino.c_pos[i+1].y);
 		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
 		y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 1].y;
+		printf("x_d = %d",x_d);
+		printf("y_d = %d",y_d);
 		if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 			(y_d >= -1 && y_d <= 1 && x_d == 0))
 			++i;
@@ -74,8 +78,8 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 		{
 			tetrimino->c_pos[i].x = x;
 			tetrimino->c_pos[i++].y = y;
-			++x;
 		}
+		++x;
 		boucle++;
 	}
 	if ((*--str != '#' && *str != '.' && *str != '\n') || i > 4 ||

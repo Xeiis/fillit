@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 15:09:10 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/16 15:11:49 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int					main(int argc, char **argv)
 			write(1, "error\n", 6);
 		else
 			write(1, "ok\n", 3);
+		// algo pour resolution
+		// afficher la solution
 	}
 	return (0);
 }
