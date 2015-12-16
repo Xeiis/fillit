@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 15:45:30 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:46:29 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int					ft_test(t_tetrimino tetrimino)
 	int						y_d;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		printf(" [%d]x = %d, [%d]x =%d\n",i,tetrimino.c_pos[i].x,i+1,tetrimino.c_pos[i+1].x);
 		printf(" [%d]y = %d, [%d]y =%d\n",i,tetrimino.c_pos[i].y,i+1,tetrimino.c_pos[i+1].y);
@@ -64,9 +64,9 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 	int						x;
 	int						y;
 	int						i;
-	int						boucle;
+	int						b;
 
-	ft_init(&x, &y, &i, &boucle);
+	ft_init(&x, &y, &i, &b);
 	while (*++str && i < 5 && (*str == '#' || *str == '.' || *str == '\n'))
 	{
 		if (*str == '\n')
@@ -76,14 +76,14 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 		}
 		else if (*str == '#' && *str != '.')
 		{
-			tetrimino->c_pos[i].x = x;
+			tetrimino->c_pos[i].x = x++;
 			tetrimino->c_pos[i++].y = y;
 		}
-		++x;
-		boucle++;
+		else if (*str == '.')
+			++x;
+		b++;
 	}
-	if ((*--str != '#' && *str != '.' && *str != '\n') || i > 4 ||
-			(boucle != 21 && boucle != 20))
+	if (!ft_isvalidchar(*--str) || i > 4 || (b != 21 && b != 20))
 		return (0);
 	return (1);
 }
