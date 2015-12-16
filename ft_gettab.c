@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 17:31:19 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/16 17:43:16 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,21 @@ static	int					ft_test(t_tetrimino tetrimino)
 	i = 0;
 	while (i < 4)
 	{
-		printf(" [%d]x = %d, [%d]x =%d\n",i,tetrimino.c_pos[i].x,i+1,tetrimino.c_pos[i+1].x);
-		printf(" [%d]y = %d, [%d]y =%d\n",i,tetrimino.c_pos[i].y,i+1,tetrimino.c_pos[i+1].y);
 		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
 		y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 1].y;
-		printf("x_d = %d",x_d);
-		printf("y_d = %d",y_d);
 		if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 			(y_d >= -1 && y_d <= 1 && x_d == 0))
 			++i;
-		else if (i >= 1)
+		else if (x_d >= -1 && x_d <= 1 && y_d >= -1 && y_d <= 1)
 		{
-			x_d = tetrimino.c_pos[i - 1].x - tetrimino.c_pos[i].x;
-			y_d = tetrimino.c_pos[i - 1].y - tetrimino.c_pos[i].y;
-			if (y_d >= -1 && y_d <= 1 && x_d >= -1 && x_d <= 1)
+			x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 2].x;
+			y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 2].y;
+			printf("x_d => [%d]\n", x_d);
+			printf("x_a => [%d] | x_b => [%d]\n", tetrimino.c_pos[i - 1].x, tetrimino.c_pos[i + 1].x);
+			printf("y_d => [%d]\n", y_d);
+			printf("y_a => [%d] | y_b => [%d]\n", tetrimino.c_pos[i - 1].y, tetrimino.c_pos[i + 1].y);
+			if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
+				(y_d >= -1 && y_d <= 1 && x_d == 0))
 				++i;
 			else
 				return (0);
