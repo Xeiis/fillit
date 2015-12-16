@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 19:38:52 by dchristo         ###   ########.fr       */
+/*   Updated: 2015/12/16 13:36:12 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include "fillit.h"
 #include "libft/libft.h"
 
-/*static	int					ft_test(t_tetrimino tetrimino)
+#include <stdio.h>
+
+static	int					ft_test(t_tetrimino tetrimino)
 {
-	int				i;
-	int				x_d;
-	int				y_d;
+	int						i;
+	int						x_d;
+	int						y_d;
 
 	i = 0;
 	while (i < 3)
@@ -43,10 +45,9 @@
 			return (0);
 	}
 	return (1);
-}*/
+}
 
-static	void				ft_init(size_t *x, size_t *y, size_t *i,
-									size_t *boucle)
+static	void				ft_init(int *x, int *y, int *i, int *boucle)
 {
 	*x = 0;
 	*y = 0;
@@ -54,12 +55,12 @@ static	void				ft_init(size_t *x, size_t *y, size_t *i,
 	*boucle = 0;
 }
 
-static	int					ft_statement(char *str, t_tetrimino tetrimino)
+static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 {
-	size_t			x;
-	size_t			y;
-	size_t			i;
-	size_t			boucle;
+	int						x;
+	int						y;
+	int						i;
+	int						boucle;
 
 	ft_init(&x, &y, &i, &boucle);
 	while (*++str && i < 5 && (*str == '#' || *str == '.' || *str == '\n'))
@@ -71,11 +72,10 @@ static	int					ft_statement(char *str, t_tetrimino tetrimino)
 		}
 		else if (*str == '#' && *str != '.')
 		{
-			tetrimino.c_pos[i].x = x++;
-			tetrimino.c_pos[i++].y = y;
+			tetrimino->c_pos[i].x = x++;
+			tetrimino->c_pos[i++].y = y;
 		}
-		else
-			++x;
+		++x;
 		boucle++;
 	}
 	if ((*--str != '#' && *str != '.' && *str != '\n') || i > 4 ||
@@ -86,10 +86,10 @@ static	int					ft_statement(char *str, t_tetrimino tetrimino)
 
 static	t_tetrimino			*ft_read(int fd)
 {
-	char			*buf;
-	size_t			i;
-	t_tetrimino		*ret;
-	t_tetrimino		*tmp;
+	char					*buf;
+	int						i;
+	t_tetrimino				*ret;
+	t_tetrimino				*tmp;
 
 	i = 0;
 	buf = ft_strnew(BUF_S);
@@ -98,9 +98,11 @@ static	t_tetrimino			*ft_read(int fd)
 		return (NULL);
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		if (!(ft_statement(--buf, *ret)))
+		if (!(ft_statement(--buf, ret)))
 			return (NULL);
 		ret->c = 'A' + i;
+		if (!(ft_test(*ret)))
+			return (NULL);
 		if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
 			return (NULL);
 		ret->next = tmp;
@@ -111,9 +113,9 @@ static	t_tetrimino			*ft_read(int fd)
 	return (ret);
 }
 
-t_tetrimino			*ft_gettab(const char *path)
+t_tetrimino					*ft_gettab(const char *path)
 {
-	int				fd;
+	int						fd;
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (NULL);
