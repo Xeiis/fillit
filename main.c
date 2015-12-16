@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/16 14:00:56 by ldubos           ###   ########.fr       */
+/*   Updated: 2015/12/16 15:09:10 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int					main(int argc, char **argv)
 	if (argc != 2)
 		write(1, "error\n", 6);
 	else
+	{
 		t = ft_gettab(argv[1]);
-	if(!t)
-		write(1, "error\n", 6);
-	else
-		write(1, "ok\n", 3);
+		if(!t)
+			write(1, "error\n", 6);
+		else
+			write(1, "ok\n", 3);
+	}
 	return (0);
 }

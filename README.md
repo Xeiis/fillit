@@ -3,10 +3,10 @@ Projet FILLIT
 
 Authors : ldubos dchristo
 
-A faire | A tester | Fait
-:--------|:----------:|-----:
-Lecture |          |     
-Detection |        |
-Verification |     |
-Resolution |       |
-Affichage |        |
+Liste | A faire | A tester | Fait
+------|:--------|:----------:|-----:
+Lecture |          |     |  X
+Detection |        |     |  X
+Verification |     |  X  |
+Resolution |    X  |     |
+Affichage |     X  |     |
