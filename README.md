@@ -12,7 +12,7 @@ Liste | A faire | A tester | Fait
 ------|:--------|:----------:|-----:
 Lecture |          |     |  X
 Detection |        |     |  X
-Verification |     |  X  |
+Verification |     | | X
 Resolution |    X  |     |
 Affichage |     X  |     |
 
@@ -25,4 +25,4 @@ Affichage |     X  |     |
 	"|  | |     _| |_| |____| |____ _| |_   | |    |";
 	"|  |_|    |_____|______|______|_____|  |_|    |";
 	"|                                             |";
-	"+---------------------------------------------+";
+	"+------------------------by dchristo & ldubos-+";
