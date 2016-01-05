@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 01:01:07 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/05 01:48:34 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/05 04:17:50 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void			ft_init2(int *y, int *ok, int *x)
 	*x = 0;
 }
 
-int				ft_test_write(t_tetrimino *tetrimino, char **map, t_vector2 vector)
+int				ft_test_write(t_tetrimino *tetrimino,
+		char **map, t_vector2 vector)
 {
 	int x;
 	int y;
@@ -56,23 +57,48 @@ int				ft_test_write(t_tetrimino *tetrimino, char **map, t_vector2 vector)
 	x = 0;
 	y = 0;
 	while (y < vector.y)
-	{	
+	{
 		i = 0;
 		while (map[tetrimino->c_pos[i].x + x][tetrimino->c_pos[i].y + y] != '.')
 			i++;
 		if (i == 4)
 			return (1);
-		x++;
 		if (x == vector.x)
 		{
 			x = 0;
 			y++;
 		}
+		else
+			x++;
 	}
 	return (0);
 }
 
-int				ft_write_tetri(t_tetrimino *tetrimino, char **map)
+int				ft_write_tetri(t_tetrimino *t, char **map, int min_sqr, int i)
 {
-	
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < min_sqr)
+	{
+		i = -1;
+		while (map[t->c_pos[i].x + x][t->c_pos[i].y + y] != '.')
+			++i;
+		if (i == 4)
+		{
+			i = -1;
+			while (++i < 4)
+				map[t->c_pos[i].x + x][t->c_pos[i].y + y] = t->c;
+		}
+		if (x == min_sqr)
+		{
+			x = 0;
+			++y;
+		}
+		else
+			++x;
+	}
+	return (1);
 }

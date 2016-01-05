@@ -6,11 +6,36 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 17:44:37 by ldubos            #+#    #+#             */
-/*   Updated: 2015/12/15 19:35:25 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/05 04:31:15 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "fillit.h"
+
+void				ft_affichage_solution(char **map, int min_sqr)
+{
+	int				x;
+	int				y;
+
+	x = 0;
+	y = 0;
+	while (x < min_sqr)
+	{
+		if (ft_isupper(map[x][y]))
+			ft_putchar(map[x][y]);
+		else
+			ft_putchar('.');
+		if (y == min_sqr)
+		{
+			y = 0;
+			++x;
+			ft_putchar('\n');
+		}
+		else
+			++y;
+	}
+}
 
 double				ft_sqrt(double n, double i)
 {
