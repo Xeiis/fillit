@@ -1,9 +1,87 @@
-...#
-...#
-..##
+.#..
+.#..
+##..
 ....
 
+#...
+#...
+##..
+....
+
+##..
+##..
 ....
 ....
+
+.AB
+AAB
+A.BB
+
+
+fail on passe a vector 1-0
+
+..A
+.AA
+.A.
+
+fail on passe a vector 2 -0
+
+...A
+..AA
+..A.
+
+test_write ok
+on ecrit
+B..A
+B..A
+BBAA
+
+test possible
+
+donc on ecrit
+
+BCCA
+BCCA
+BBAA
+
+
+fail vector 3 - 0
+
+fail vector 0 - 1
+
 ....
-####
+.A..
+AA..
+A...
+
+..B.
+.AB.
+AABB
+A...
+
+fail vector 1 - 1
+
+....
+..A.
+.AA.
+.A..
+
+fail vector 2 - 1
+
+....
+...A
+..AA
+..A.
+
+B...
+B..A
+BBAA
+..A.
+
+BCC.
+BCCA
+BBAA
+..A.
+
+
+

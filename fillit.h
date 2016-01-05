@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/04 17:03:38 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/05 01:04:29 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,12 @@ int						ft_isvalidchar(char c);
 int						ft_is_back_line(int *y, int *x);
 void					ft_sort_tetri(t_tetrimino *tetrimino);
 void					ft_affichage(t_tetrimino *tetrimino);
+int						ft_test_dlm(t_tetrimino, int i);
+int						ft_resolve(t_tetrimino *tetrimino, int min_sqr
+									, char **map, t_vector2 vector);
+int						max_allx_tetri(t_tetrimino *tetrimino);
+int						max_ally_tetri(t_tetrimino *tetrimino);
+int						max_x_tetri(t_tetrimino *tetrimino, int y);
+int						max_y_tetri(t_tetrimino *tetrimino, int x);
 
 #endif

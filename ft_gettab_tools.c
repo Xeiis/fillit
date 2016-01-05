@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/04 17:16:42 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/05 01:03:16 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int					ft_is_back_line(int *y, int *x)
 
 int					ft_isvalidchar(char c)
 {
-	if (c == '\n' || c == '#' || c == '.')
+	if (c == '\n' || c == '#' || c == '.' || c == '\0')
 		return (1);
-	return(0);
+	return (0);
 }
 
 void				ft_sort_tetri(t_tetrimino *tetrimino)
@@ -56,19 +56,15 @@ void				ft_sort_tetri(t_tetrimino *tetrimino)
 	}
 }
 
-void				ft_affichage(t_tetrimino *tetrimino)
+int					ft_test_dlm(t_tetrimino tetrimino, int i)
 {
-	int i;
+	int x_d;
+	int y_d;
 
-	while (tetrimino->next != NULL)
-	{
-		i = -1;
-		while (++i < 4)
-		{
-			printf("i : %d, x : %d, y : %d\n",i,tetrimino->c_pos[i].x,tetrimino->c_pos[i].y);
-		}
-		tetrimino = tetrimino->next;
-	}
+	x_d = tetrimino.c_pos[i + 1].x - tetrimino.c_pos[i - 1].x;
+	y_d = tetrimino.c_pos[i + 1].y - tetrimino.c_pos[i - 1].y;
+	if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
+		(y_d >= -1 && y_d <= 1 && x_d == 0))
+		return (1);
+	return (0);
 }
-
-

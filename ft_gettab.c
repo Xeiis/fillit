@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/04 17:12:12 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/04 23:42:08 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static	int					ft_test(t_tetrimino tetrimino, int i)
 	int						x_d;
 	int						y_d;
 
-	i = 0;
 	while (i < 3)
 	{
 		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
@@ -30,7 +29,8 @@ static	int					ft_test(t_tetrimino tetrimino, int i)
 			x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 2].x;
 			y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 2].y;
 			if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
-				(y_d >= -1 && y_d <= 1 && x_d == 0))
+				(y_d >= -1 && y_d <= 1 && x_d == 0) ||
+				ft_test_dlm(tetrimino, i))
 				++i;
 			else
 				return (0);
@@ -77,15 +77,12 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 	return (1);
 }
 
-static	t_tetrimino			*ft_read(int fd)
+static	t_tetrimino			*ft_read(int fd, int i, char *buf)
 {
-	char					*buf;
-	int						i;
 	t_tetrimino				*ret;
 	t_tetrimino				*tmp;
 	t_tetrimino				*start;
 
-	i = 0;
 	buf = ft_strnew(BUF_S);
 	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
 		return (NULL);
@@ -97,13 +94,13 @@ static	t_tetrimino			*ft_read(int fd)
 		if (!(ft_statement(--buf, ret)))
 			return (NULL);
 		ret->c = 'A' + i;
-		if (!(ft_test(*ret, i)))
+		if (!(ft_test(*ret, 0)))
 			return (NULL);
 		if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
 			return (NULL);
 		ret->next = tmp;
 		ret = ret->next;
-		ft_bzero(buf, BUF_S);
+		ft_bzero(buf, BUF_S + 1);
 		++i;
 	}
 	return (start);
@@ -115,5 +112,5 @@ t_tetrimino					*ft_gettab(const char *path)
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (NULL);
-	return (ft_read(fd));
+	return (ft_read(fd, 0, NULL));
 }
