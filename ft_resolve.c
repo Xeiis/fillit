@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/05 05:25:01 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 11:09:03 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				max_y_tetri(t_tetrimino *tetrimino, int x)
 	return (y + 1);
 }
 
-int				ft_add_tetri(t_tetrimino *tetrimino, char **map,
+int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 		int min_sqr, t_vector2 v)
 {
 	int y;
@@ -87,12 +87,10 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char **map,
 }
 
 int				ft_resolve(t_tetrimino *tetrimino, int min_sqr
-				, char **map, t_vector2 vector)
+				, char *map, t_vector2 vector)
 {
 	if ((ft_add_tetri(tetrimino, map, min_sqr, vector)) == 0)
-	{
 		return (0);
-	}
 	else if (tetrimino->next != NULL)
 		return (ft_resolve(tetrimino->next, min_sqr, map, vector));
 	return (1);
