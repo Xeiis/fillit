@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 17:01:03 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:23:11 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				max_x_tetri(t_tetrimino *tetrimino, int y)
 
 	i = -1;
 	x = -1;
-	while (++i < 3)
+	while (++i < 4)
 	{
 		if (tetrimino->c_pos[i].y == y)
 			if (tetrimino->c_pos[i].x > x)
@@ -50,7 +50,7 @@ int				max_y_tetri(t_tetrimino *tetrimino, int x)
 
 	i = -1;
 	y = -1;
-	while (++i < 3)
+	while (++i < 4)
 	{
 		if (tetrimino->c_pos[i].x == x)
 			if (tetrimino->c_pos[i].y > y)

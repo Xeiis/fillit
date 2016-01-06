@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 01:01:07 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 15:51:38 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:19:45 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				max_ally_tetri(t_tetrimino *tetrimino)
 
 	y = -1;
 	x = -1;
-	while (++y < 4)
+	while (++x < 4)
 		if (max_y_tetri(tetrimino, x) > y)
 			y = max_y_tetri(tetrimino, x);
 	return (y);
@@ -86,17 +86,14 @@ int				ft_write_tetri(t_tetrimino *t, char *map, int min_sqr, int i)
 	{
 		i = -1;
 		while (i < 4 && !ft_isupper((map[t->c_pos[i].x + x + t->c_pos[i].y + y])))
-		{	
-			printf("{A} map[%d + %d + %d + %d] => '%c'\n", t->c_pos[i].x, x, t->c_pos[i].y, y, map[t->c_pos[i].x + x + t->c_pos[i].y + y]);
 			++i;
-		}
 		if (i == 4)
 		{
 			i = -1;
 			while (++i < 4)
 			{
-				printf("{B} map[%d + %d + %d + %d] => '%c'\n", t->c_pos[i].x, x, t->c_pos[i].y, y, map[t->c_pos[i].x + x + t->c_pos[i].y + y]);
-				map[t->c_pos[i].x + x + t->c_pos[i].y + y] = t->c;
+				map[(t->c_pos[i].x) + x + t->c_pos[i].y * min_sqr + y * min_sqr] = t->c;
+				printf("{B} map[%d * %d +  %d * %d + %d + %d] => '%c'\n", t->c_pos[i].x, min_sqr, x, min_sqr, t->c_pos[i].y, y, map[t->c_pos[i].x + x + t->c_pos[i].y + y]);
 			}
 		}
 		if (x == min_sqr)
