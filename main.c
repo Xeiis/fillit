@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/06 11:09:05 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 13:53:04 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int			ft_resolve_it(t_tetrimino *tetrimino, char **map,
 	{
 		if (result == 0)
 		{
-			if (max_allx_tetri(tetrimino) + vector.x + 1 > min_sqr)
+			if ((max_allx_tetri(tetrimino) + vector.x + 1) > min_sqr)
 			{
 				vector.x = 0;
 				vector.y++;
@@ -82,7 +82,7 @@ int					main(int argc, char **argv)
 				write(1, "error\n", 6);
 				return (0);
 			}
-		//	ft_affichage_solution(map, min_sqr);
+			ft_affichage_solution(map, min_sqr);
 			write(1, "ok\n", 3);
 		}
 	}

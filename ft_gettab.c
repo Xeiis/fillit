@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/04 23:42:08 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:21:22 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,22 @@ static	t_tetrimino			*ft_read(int fd, int i, char *buf)
 	start = ret;
 	while (read(fd, buf, BUF_S) != 0)
 	{
+		if (!i)
+		{
+			if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
+				return (NULL);
+			ret->next = tmp;
+			ret = ret->next;
+		}
 		if (!(ft_statement(--buf, ret)))
 			return (NULL);
 		ret->c = 'A' + i;
 		if (!(ft_test(*ret, 0)))
 			return (NULL);
-		if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
-			return (NULL);
-		ret->next = tmp;
-		ret = ret->next;
-		ft_bzero(buf, BUF_S + 1);
+			ft_bzero(buf, BUF_S + 1);
 		++i;
 	}
+	ret->next = NULL;
 	return (start);
 }
 

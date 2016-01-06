@@ -6,23 +6,23 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 11:09:03 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:00:13 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int				max_x_line(char **map, int y)
+int				max_x_line(char *map, int y)
 {
 	int i;
 	int x;
 
 	i = -1;
 	x = -1;
-	while (map[y][++i] != '\0')
+	while (map[y + (++i)] != '\0')
 	{
-		if (map[y][i] > x)
-			x = map[y][i];
+		if (map[y + i] > x)
+			x = map[y + i];
 	}
 	return (x + 1);
 }
@@ -76,7 +76,7 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 	if (x >= max_allx_tetri(tetrimino) && ok >= max_ally_tetri(tetrimino))
 		if (ft_test_write(tetrimino, map, v))
 			return (ft_write_tetri(tetrimino, map, min_sqr, -1));
-	ft_init2(&y, &ok, NULL);
+	ft_init2(&y, &ok, &x);
 	while (++y < min_sqr)
 		if (max_x_line(map, y) + max_x_tetri(tetrimino, y) < min_sqr)
 			ok++;
