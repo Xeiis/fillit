@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 19:23:11 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/06 19:43:37 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 		printf(" x[%d] >= max_allx_tetri(tetrimino)[%d] && ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", x, max_allx_tetri(tetrimino), ok, max_ally_tetri(tetrimino));
 	ft_init2(&y, &ok, &x);
 	while (++y < min_sqr)
-		if (max_x_line(map, y) + max_x_tetri(tetrimino, y) < min_sqr)
+		if (max_x_line(map, y) + max_x_tetri(tetrimino, y) <= min_sqr)
 			ok++;
 	if (ok >= max_ally_tetri(tetrimino))
 		return (ft_write_tetri(tetrimino, map, min_sqr, -1));

@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/06 19:11:06 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/06 20:12:53 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			ft_min_sqr(t_tetrimino **tetrimino, int i)
 static int			ft_map(char **map, int min_sqr, int i)
 {
 	free(*map);
-	if ((*map = ft_strnew(min_sqr * min_sqr + min_sqr)) == NULL)
+	if ((*map = ft_strnew(min_sqr * min_sqr)) == NULL)
 		return (0);
 	return (1);
 }
