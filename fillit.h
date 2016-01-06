@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/06 11:56:44 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/06 15:58:03 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ typedef struct			s_tetrimino
 }						t_tetrimino;
 
 double					ft_sqrt(double n, double i);
-t_tetrimino				*ft_gettab(const char *path);
+int						ft_gettab(const char *path, t_tetrimino **t);
 int						ft_isvalidchar(char c);
 int						ft_is_back_line(int *y, int *x);
 void					ft_sort_tetri(t_tetrimino *tetrimino);
 void					ft_affichage(t_tetrimino *tetrimino);
 int						ft_test_dlm(t_tetrimino tetrimino, int i);
-int						ft_resolve(t_tetrimino *tetrimino, int min_sqr,
+int						ft_resolve(t_tetrimino **tetrimino, int min_sqr,
 		char *map, t_vector2 vector);
 int						max_allx_tetri(t_tetrimino *tetrimino);
 int						max_ally_tetri(t_tetrimino *tetrimino);

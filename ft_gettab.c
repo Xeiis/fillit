@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/06 14:21:22 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/06 15:51:07 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,44 +77,36 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 	return (1);
 }
 
-static	t_tetrimino			*ft_read(int fd, int i, char *buf)
+static int					ft_read(int fd, int i, char *buf, t_tetrimino **ret)
 {
-	t_tetrimino				*ret;
-	t_tetrimino				*tmp;
-	t_tetrimino				*start;
+	t_tetrimino				*t;
 
 	buf = ft_strnew(BUF_S);
-	if (!(ret = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
-		return (NULL);
-	if (!(start = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
-		return (NULL);
-	start = ret;
+	t = *ret;
 	while (read(fd, buf, BUF_S) != 0)
 	{
-		if (!i)
+		if (i != 0)
 		{
-			if (!(tmp = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
-				return (NULL);
-			ret->next = tmp;
-			ret = ret->next;
+			if (!(t->next = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
+				return (0);
+			t = t->next;
 		}
-		if (!(ft_statement(--buf, ret)))
-			return (NULL);
-		ret->c = 'A' + i;
-		if (!(ft_test(*ret, 0)))
-			return (NULL);
+		if (!(ft_statement(--buf, t)))
+			return (0);
+		t->c = 'A' + i;
+		if (!(ft_test(*t, 0)))
+			return (0);
 			ft_bzero(buf, BUF_S + 1);
 		++i;
 	}
-	ret->next = NULL;
-	return (start);
+	t->next = NULL;
+	return (1);
 }
 
-t_tetrimino					*ft_gettab(const char *path)
+int							ft_gettab(const char *path, t_tetrimino **t)
 {
 	int						fd;
-
 	if ((fd = open(path, O_RDONLY)) == -1)
-		return (NULL);
-	return (ft_read(fd, 0, NULL));
+		return (0);
+	return (ft_read(fd, 0, NULL, t));
 }

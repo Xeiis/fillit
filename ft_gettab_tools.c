@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/05 01:03:16 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/06 15:11:03 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void				ft_sort_tetri(t_tetrimino *tetrimino)
 	int y;
 	int i;
 
+	printf("test : %c\n", tetrimino->c);
 	while (tetrimino->next != NULL)
 	{
 		x = tetrimino->c_pos[0].x;

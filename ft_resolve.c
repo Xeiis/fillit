@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 14:00:13 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/06 17:01:03 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 			x++;
 		}
 	if (x >= max_allx_tetri(tetrimino) && ok >= max_ally_tetri(tetrimino))
+	{
 		if (ft_test_write(tetrimino, map, v))
 			return (ft_write_tetri(tetrimino, map, min_sqr, -1));
+	}
+	else
+		printf(" x[%d] >= max_allx_tetri(tetrimino)[%d] && ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", x, max_allx_tetri(tetrimino), ok, max_ally_tetri(tetrimino));
 	ft_init2(&y, &ok, &x);
 	while (++y < min_sqr)
 		if (max_x_line(map, y) + max_x_tetri(tetrimino, y) < min_sqr)
@@ -83,15 +87,26 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 	if (ok >= max_ally_tetri(tetrimino))
 		return (ft_write_tetri(tetrimino, map, min_sqr, -1));
 	else
+		printf(" ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", ok, max_ally_tetri(tetrimino));
+	//else
 		return (0);
 }
 
-int				ft_resolve(t_tetrimino *tetrimino, int min_sqr
+int				ft_resolve(t_tetrimino **tetrimino, int min_sqr
 				, char *map, t_vector2 vector)
 {
-	if ((ft_add_tetri(tetrimino, map, min_sqr, vector)) == 0)
+	t_tetrimino *t;
+
+	t = *tetrimino;
+	printf("TETRI : %c\n", t->c);
+	printf("VECTOR.X : %d\n", vector.x);
+	printf("VECTOR.Y : %d\n", vector.y);
+	if ((ft_add_tetri(t, map, min_sqr, vector)) == 0)
 		return (0);
-	else if (tetrimino->next != NULL)
-		return (ft_resolve(tetrimino->next, min_sqr, map, vector));
+	else if (t->next != NULL)
+	{
+		t = t->next;
+		return (ft_resolve(&t, min_sqr, map, vector));
+	}
 	return (1);
 }
