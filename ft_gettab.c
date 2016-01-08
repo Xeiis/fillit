@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/06 15:51:07 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/08 21:16:28 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static	int					ft_test(t_tetrimino tetrimino, int i)
 			else
 				return (0);
 		}
+		else if (ft_test_dlm(tetrimino, i))
+			++i;
 		else
 			return (0);
 	}
@@ -92,10 +94,16 @@ static int					ft_read(int fd, int i, char *buf, t_tetrimino **ret)
 			t = t->next;
 		}
 		if (!(ft_statement(--buf, t)))
+		{
+			ft_putstr("1fail\n");
 			return (0);
+		}
 		t->c = 'A' + i;
 		if (!(ft_test(*t, 0)))
+		{
+			ft_putstr("2fail\n");
 			return (0);
+		}
 			ft_bzero(buf, BUF_S + 1);
 		++i;
 	}

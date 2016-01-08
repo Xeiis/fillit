@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/06 15:11:03 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/08 21:21:35 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,44 @@ int					ft_isvalidchar(char c)
 	return (0);
 }
 
-void				ft_sort_tetri(t_tetrimino *tetrimino)
+void				ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i)
 {
-	int x;
-	int y;
-	int i;
+	t_tetrimino		*t;
 
-	printf("test : %c\n", tetrimino->c);
-	while (tetrimino->next != NULL)
+	t = *tetri;
+	while (t != NULL)
 	{
-		x = tetrimino->c_pos[0].x;
-		y = tetrimino->c_pos[0].y;
+		ft_putstr("tetri : ");
+		ft_putchar(t->c);
+		ft_putchar('\n');
+		x = t->c_pos[0].x;
+		y = t->c_pos[0].y;
 		i = -1;
 		while (++i < 3)
 		{
-			if (tetrimino->c_pos[i + 1].x < x)
-				x = tetrimino->c_pos[i + 1].x;
-			if (tetrimino->c_pos[i + 1].y < y)
-				y = tetrimino->c_pos[i + 1].y;
+			ft_putstr("i : ");
+			ft_putnbr(i);
+			ft_putchar('\n');
+			ft_putstr("x : ");
+			ft_putnbr(t->c_pos[i+1].x);
+			ft_putchar('\n');
+			ft_putstr("y : ");
+			ft_putnbr(t->c_pos[i+1].y);
+			ft_putchar('\n');
+			if (t->c_pos[i + 1].x < x)
+				x = t->c_pos[i + 1].x;
+			if (t->c_pos[i + 1].y < y)
+				y = t->c_pos[i + 1].y;
 		}
 		i = -1;
 		while (++i < 4)
 		{
-			tetrimino->c_pos[i].x -= x;
-			tetrimino->c_pos[i].y -= y;
+			printf("t.x[%d] - x[%d]\n",t->c_pos[i].x, x);
+			printf("t.y[%d] - y[%d]\n",t->c_pos[i].y, y);
+			t->c_pos[i].x -= x;
+			t->c_pos[i].y -= y;
 		}
-		tetrimino = tetrimino->next;
+		t = t->next;
 	}
 }
 
@@ -66,6 +78,14 @@ int					ft_test_dlm(t_tetrimino tetrimino, int i)
 	y_d = tetrimino.c_pos[i + 1].y - tetrimino.c_pos[i - 1].y;
 	if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 		(y_d >= -1 && y_d <= 1 && x_d == 0))
+		return (1);
+	else if (tetrimino.c_pos[0].x < tetrimino.c_pos[1].x &&
+			tetrimino.c_pos[0].y == tetrimino.c_pos[1].y &&
+			tetrimino.c_pos[2].x < tetrimino.c_pos[0].x &&
+			tetrimino.c_pos[2].y > tetrimino.c_pos[0].y &&
+			tetrimino.c_pos[3].x == tetrimino.c_pos[0].x &&
+			tetrimino.c_pos[3].y > tetrimino.c_pos[0].y &&
+			tetrimino.c_pos[2].y == tetrimino.c_pos[3].y)
 		return (1);
 	return (0);
 }
