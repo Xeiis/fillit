@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/05 01:01:07 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/08 20:24:06 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/08 22:39:33 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int				ft_write_tetri(t_tetrimino *t, char *map, int min_sqr, int i)
 				break ;
 			if (t->c_pos[i].y + y >= min_sqr)
 				break ;
-			printf("t->x : %d | x : %d | t->y : %d | y : %d | i : %d | min_sqr : %d\n", t->c_pos[i].x, x, t->c_pos[i].y,  y, i, min_sqr);
+	//		printf("t->x : %d | x : %d | t->y : %d | y : %d | i : %d | min_sqr : %d\n", t->c_pos[i].x, x, t->c_pos[i].y,  y, i, min_sqr);
 			++i;
 		}
 		if (i == 4)
@@ -100,7 +100,7 @@ int				ft_write_tetri(t_tetrimino *t, char *map, int min_sqr, int i)
 			while (++i < 4)
 			{
 				map[t->c_pos[i].x + x + t->c_pos[i].y * min_sqr + y * min_sqr] = t->c;
-				printf("{B} map[%d +  %d + %d + %d] == %d => '%c', min_sqr : %d\n", t->c_pos[i].x, x, t->c_pos[i].y, y, t->c_pos[i].x + x + t->c_pos[i].y * min_sqr + y *min_sqr, map[t->c_pos[i].x + x + t->c_pos[i].y * min_sqr + y * min_sqr], min_sqr);
+	//			printf("{B} map[%d +  %d + %d + %d] == %d => '%c', min_sqr : %d\n", t->c_pos[i].x, x, t->c_pos[i].y, y, t->c_pos[i].x + x + t->c_pos[i].y * min_sqr + y *min_sqr, map[t->c_pos[i].x + x + t->c_pos[i].y * min_sqr + y * min_sqr], min_sqr);
 			}
 			return (1);
 		}
@@ -112,6 +112,6 @@ int				ft_write_tetri(t_tetrimino *t, char *map, int min_sqr, int i)
 		else
 			++x;
 	}
-	printf(" x : %d, y : %d, min_sqr : %d\n",x, y , min_sqr);
+	//printf(" x : %d, y : %d, min_sqr : %d\n",x, y , min_sqr);
 	return (0);
 }

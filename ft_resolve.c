@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/08 20:23:55 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/08 22:39:01 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				max_x_line(char *map, int y)
 	{
 		if (ft_isupper(map[y + i]))
 			if (i > x)
-			{	printf("map[y + i]%c, x : %d, y : %d, i : %d\n",map[y + i], x, y ,i);
+			{//	printf("map[y + i]%c, x : %d, y : %d, i : %d\n",map[y + i], x, y ,i);
 				x = i;
 			}
 	}
@@ -82,18 +82,18 @@ int				ft_add_tetri(t_tetrimino *tetrimino, char *map,
 			return (ft_write_tetri(tetrimino, map, min_sqr, -1));
 	}
 	else
-		printf(" x[%d] >= max_allx_tetri(tetrimino)[%d] && ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", x, max_allx_tetri(tetrimino), ok, max_ally_tetri(tetrimino));
+		//printf(" x[%d] >= max_allx_tetri(tetrimino)[%d] && ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", x, max_allx_tetri(tetrimino), ok, max_ally_tetri(tetrimino));
 	ft_init2(&y, &ok, &x);
 	while (++y < min_sqr)
 	{
 		if (max_x_line(map, y) + max_x_tetri(tetrimino, y) <= min_sqr)
 			ok++;
-		printf("max_x_line(map, y)[%d] + max_x_tetri(tetrimino, y)[%d] <= min_sqr[%d], y : %d\n", max_x_line(map, y), max_x_tetri(tetrimino, y), min_sqr, y);
+		//printf("max_x_line(map, y)[%d] + max_x_tetri(tetrimino, y)[%d] <= min_sqr[%d], y : %d\n", max_x_line(map, y), max_x_tetri(tetrimino, y), min_sqr, y);
 	}
 	if (ok >= max_ally_tetri(tetrimino))
 		return (ft_write_tetri(tetrimino, map, min_sqr, -1));
 	else
-		printf(" ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", ok, max_ally_tetri(tetrimino));
+	//	printf(" ok[%d] >= max_ally_tetri(tetrimino)[%d]\n", ok, max_ally_tetri(tetrimino));
 	//else
 		return (0);
 }
@@ -104,9 +104,9 @@ int				ft_resolve(t_tetrimino **tetrimino, int min_sqr
 	t_tetrimino *t;
 
 	t = *tetrimino;
-	printf("TETRI : %c\n", t->c);
-	printf("VECTOR.X : %d\n", vector.x);
-	printf("VECTOR.Y : %d\n", vector.y);
+	//printf("TETRI : %c\n", t->c);
+	//printf("VECTOR.X : %d\n", vector.x);
+	//printf("VECTOR.Y : %d\n", vector.y);
 	if ((ft_add_tetri(t, map, min_sqr, vector)) == 0)
 		return (0);
 	else if (t->next != NULL)
