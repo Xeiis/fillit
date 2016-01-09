@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/08 22:38:11 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/09 20:43:30 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,24 @@ void				ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i)
 	t = *tetri;
 	while (t != NULL)
 	{
-		//ft_putstr("tetri : ");
-		//ft_putchar(t->c);
-		//ft_putchar('\n');
+	//	ft_putstr("tetri : ");
+	//	ft_putchar(t->c);
+	//	ft_putchar('\n');
 		x = t->c_pos[0].x;
 		y = t->c_pos[0].y;
 		i = -1;
 		while (++i < 3)
 		{
-		/*	ft_putstr("i : ");
-			ft_putnbr(i);
-			ft_putchar('\n');
-			ft_putstr("x : ");
-			ft_putnbr(t->c_pos[i+1].x);
-			ft_putchar('\n');
-			ft_putstr("y : ");
-			ft_putnbr(t->c_pos[i+1].y);
-			ft_putchar('\n');
-		*/	if (t->c_pos[i + 1].x < x)
+	//		ft_putstr("i : ");
+	//		ft_putnbr(i);
+	//		ft_putchar('\n');
+	//		ft_putstr("x : ");
+	//		ft_putnbr(t->c_pos[i+1].x);
+	//		ft_putchar('\n');
+	//		ft_putstr("y : ");
+	//		ft_putnbr(t->c_pos[i+1].y);
+	//		ft_putchar('\n');
+			if (t->c_pos[i + 1].x < x)
 				x = t->c_pos[i + 1].x;
 			if (t->c_pos[i + 1].y < y)
 				y = t->c_pos[i + 1].y;
@@ -60,8 +60,8 @@ void				ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i)
 		i = -1;
 		while (++i < 4)
 		{
-		//	printf("t.x[%d] - x[%d]\n",t->c_pos[i].x, x);
-		//	printf("t.y[%d] - y[%d]\n",t->c_pos[i].y, y);
+	//		printf("t.x[%d] - x[%d]\n",t->c_pos[i].x, x);
+	//		printf("t.y[%d] - y[%d]\n",t->c_pos[i].y, y);
 			t->c_pos[i].x -= x;
 			t->c_pos[i].y -= y;
 		}

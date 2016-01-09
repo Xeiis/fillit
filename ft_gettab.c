@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/08 22:37:29 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/09 20:50:25 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,11 @@ static int					ft_read(int fd, int i, char *buf, t_tetrimino **ret)
 			t = t->next;
 		}
 		if (!(ft_statement(--buf, t)))
-		{
-			ft_putstr("1fail\n");
 			return (0);
-		}
 		t->c = 'A' + i;
 		if (!(ft_test(*t, 0)))
-		{
-			ft_putstr("2fail\n");
 			return (0);
-		}
-			ft_bzero(buf, BUF_S + 1);
+		ft_bzero(buf, BUF_S + 1);
 		++i;
 	}
 	t->next = NULL;
@@ -114,6 +108,7 @@ static int					ft_read(int fd, int i, char *buf, t_tetrimino **ret)
 int							ft_gettab(const char *path, t_tetrimino **t)
 {
 	int						fd;
+	
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (0);
 	return (ft_read(fd, 0, NULL, t));
