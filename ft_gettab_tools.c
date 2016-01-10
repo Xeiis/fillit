@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/09 20:43:30 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/10 18:59:27 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int					ft_is_back_line(int *y, int *x)
 
 int					ft_isvalidchar(char c)
 {
-	if (c == '\n' || c == '#' || c == '.' || c == '\0')
+	if (c == '\n' || c == '\0')
 		return (1);
 	return (0);
 }

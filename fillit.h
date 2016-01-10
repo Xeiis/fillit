@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/09 19:12:45 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/10 17:37:54 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ void					ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i);
 void					ft_affichage(t_tetrimino *tetrimino);
 int						ft_test_dlm(t_tetrimino tetrimino, int i);
 int						ft_resolve(t_tetrimino **tetrimino, int min_sqr,
-		char *map, t_vector2 vector);
+				char *map);
 int						max_allx_tetri(t_tetrimino *tetrimino);
 int						max_ally_tetri(t_tetrimino *tetrimino);
 int						max_x_tetri(t_tetrimino *tetrimino, int y);
 int						max_y_tetri(t_tetrimino *tetrimino, int x);
 void					ft_init2(int *y, int *ok, int *x);
-int						ft_test_write(t_tetrimino *tetrimino, char *map,
-		t_vector2 vector);
-int						ft_write_tetri(t_tetrimino *tetrimino, char *map,
-		int min_sqr, int i);
+int						ft_write_tetri_vector(t_tetrimino *
+				tetrimino, char *map, int min_sqr);
 void					ft_affichage_solution(char *map, int min_sqr);
+void					ft_suppr_tetri_vector(t_tetrimino *t, char *map, int min_sqr);
+int						max_x_line(char *map, int y);
+int						max_y_line(char *map, int x, int min_sqr);
+void					ft_vector_init(t_tetrimino **t);
+
 #endif
