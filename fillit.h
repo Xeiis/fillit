@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/10 17:37:54 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:51:50 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ int						ft_write_tetri_vector(t_tetrimino *
 				tetrimino, char *map, int min_sqr);
 void					ft_affichage_solution(char *map, int min_sqr);
 void					ft_suppr_tetri_vector(t_tetrimino *t, char *map, int min_sqr);
-int						max_x_line(char *map, int y);
+int						max_x_line(char *map, int y, int min_sqr);
 int						max_y_line(char *map, int x, int min_sqr);
 void					ft_vector_init(t_tetrimino **t);
 
+void					ft_affichage_solution_in_file(char *map, int min_sqr);
 #endif

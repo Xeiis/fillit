@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/10 20:03:27 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 16:01:22 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,11 @@ static int			ft_map(char **map, int min_sqr, int i)
 static int			ft_resolve_it(t_tetrimino **tetrimino, char **map,
 		int min_sqr)
 {
-	ft_putendl("5test");
 	min_sqr = ft_min_sqr(tetrimino, 1);
-	ft_putendl("6test");
 	if (!ft_map(map, min_sqr, -1))
 		return (0);
-	ft_putendl("7test");
 	while (((ft_resolve(tetrimino, min_sqr, *map))) != 1)
 	{
-		ft_putendl("8test");
 		ft_vector_init(tetrimino);
 		min_sqr++;
 		//printf("MIN SQR[%d]\n", min_sqr);
@@ -68,32 +64,26 @@ int					main(int argc, char **argv)
 	
 	if ((t = (t_tetrimino *)malloc(sizeof(t_tetrimino))) == NULL)
 		return (0);
-	ft_putendl("test");
 	if (argc != 2)
 		write(1, "error\n", 6);
 	else
 	{
-	ft_putendl("1test");
 		if(!ft_gettab(argv[1], &t))
 		{
 			write(1, "error\n", 6);
 			return (0);
 		}
-	ft_putendl("2test");
 		//t->c = 'A';
-		printf("tetri : %c\n",t->c);
-		printf("tetri x : %d\n",t->w_pos.x);
-		printf("tetri y : %d\n",t->w_pos.y);
-	ft_putendl("3test");
+		//printf("tetri : %c\n",t->c);
+		//printf("tetri x : %d\n",t->w_pos.x);
+		//printf("tetri y : %d\n",t->w_pos.y);
 		ft_sort_tetri(&t, 0, 0 ,0);
-	ft_putendl("4test");
 		if (!(min_sqr = ft_resolve_it(&t, &map, 0)))
 		{
 			write(1, "error\n", 6);
 			return (0);
 		}
 		ft_affichage_solution(map, min_sqr);
-		write(1, "ok\n", 3);
 	}
 	/*t2 = clock();
 	temps = (float)(t2-t1)/CLOCKS_PER_SEC;
