@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/11 16:54:10 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:10:16 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int				ft_resolve(t_tetrimino **tetrimino, int min_sqr
 	t_tetrimino *t;
 
 	t = *tetrimino;
-	FILE * fichier;
-	fichier = fopen("result.txt", "a");
+	//FILE * fichier;
+	//fichier = fopen("result.txt", "a");
 	while (t != NULL)
 	{
 		//printf("je rentre\n");
@@ -121,15 +121,15 @@ int				ft_resolve(t_tetrimino **tetrimino, int min_sqr
 		//	printf("tetri x : %d\n", t->w_pos.x);
 		//	printf("tetri y : %d\n", t->w_pos.y);
 			if (!ft_move_vector(min_sqr, t))
-			{fclose(fichier);
+			{//fclose(fichier);
 				return (0);
 			}
 		}
-		ft_affichage_solution_in_file(map, min_sqr);
+		//ft_affichage_solution_in_file(map, min_sqr);
 		//printf("je sort du while\n");
 		if (ft_resolve(&(t->next), min_sqr, map))
 		{
-			fclose(fichier);
+			//fclose(fichier);
 			return (1);
 		}
 		//printf("je suis apres le resolve\n");
@@ -137,12 +137,12 @@ int				ft_resolve(t_tetrimino **tetrimino, int min_sqr
 		ft_vector_init(&(t->next));
 		if (!ft_move_vector(min_sqr, t))
 		{
-			fclose(fichier);
+			//fclose(fichier);
 			return (0);
 		}
 	//	printf("je suis apres le move\n");
 	}
-	fclose(fichier);
+	//fclose(fichier);
 	//printf("return 1\n");
 	return (1);
 }
