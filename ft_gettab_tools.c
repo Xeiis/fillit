@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/11 15:52:06 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:40:00 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ void				ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i)
 	}
 }
 
+int					ft_test_dlm_over(t_tetrimino t)
+{
+	if ((t.c_pos[0].x - t.c_pos[1].x == 2 || t.c_pos[0].x - t.c_pos[1].x == -1)
+			&& t.c_pos[1].x - t.c_pos[2].x == -1 &&
+			t.c_pos[2] - t.c_pos[3] == -1 &&
+			(t.c_pos[1].y + t.c_pos[2] + t.c_pos[3] - t.c_pos[0] == 1 || 
+			 t.c_pos[1].y + t.c_pos[2] + t.c_pos[3] - t.c_pos[0] == -3))
+	return (0);
+}
+
 int					ft_test_dlm(t_tetrimino tetrimino, int i)
 {
 	int x_d;
@@ -79,13 +89,18 @@ int					ft_test_dlm(t_tetrimino tetrimino, int i)
 	if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
 		(y_d >= -1 && y_d <= 1 && x_d == 0))
 		return (1);
-	else if (tetrimino.c_pos[0].x < tetrimino.c_pos[1].x &&
-			tetrimino.c_pos[0].y == tetrimino.c_pos[1].y &&
-			tetrimino.c_pos[2].x < tetrimino.c_pos[0].x &&
-			tetrimino.c_pos[2].y > tetrimino.c_pos[0].y &&
-			tetrimino.c_pos[3].x == tetrimino.c_pos[0].x &&
-			tetrimino.c_pos[3].y > tetrimino.c_pos[0].y &&
-			tetrimino.c_pos[2].y == tetrimino.c_pos[3].y)
+	else if ((tetrimino.c_pos[0].x - tetrimino.c_pos[1].x == -1 ||
+			tetrimino.c_pos[0].x - tetrimino.c_pos[1].x == 1) &&
+			tetrimino.c_pos[0].y - tetrimino.c_pos[1].y == 0 &&
+			(tetrimino.c_pos[2].x - tetrimino.c_pos[3].x == -1 ||
+			tetrimino.c_pos[2].x - tetrimino.c_pos[3].x == 1) &&
+			tetrimino.c_pos[2].y - tetrimino.c_pos[3].y == 0 &&
+			((tetrimino.c_pos[0].y + tetrimino.c_pos[1].y) -
+			(tetrimino.c_pos[2].y + tetrimino.c_pos[3].y)) == -2 &&
+			(((tetrimino.c_pos[0].x + tetrimino.c_pos[1].x) -
+			(tetrimino.c_pos[2].x + tetrimino.c_pos[3].x)) == -2 ||
+			((tetrimino.c_pos[0].x + tetrimino.c_pos[1].x) -
+			(tetrimino.c_pos[2].x + tetrimino.c_pos[3].x)) == 2)
 		return (1);
 	return (0);
 }
