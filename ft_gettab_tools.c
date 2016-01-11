@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/11 17:41:10 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/11 17:43:43 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int					ft_test_dlm_over(t_tetrimino t)
 			t.c_pos[2].x - t.c_pos[3].x == -1 &&
 			(t.c_pos[1].y + t.c_pos[2].y + t.c_pos[3].y - t.c_pos[0].y == 1 || 
 			 t.c_pos[1].y + t.c_pos[2].y + t.c_pos[3].y - t.c_pos[0].y == -3))
+		return (1);
 	return (0);
 }
 
@@ -100,7 +101,9 @@ int					ft_test_dlm(t_tetrimino tetrimino, int i)
 			(((tetrimino.c_pos[0].x + tetrimino.c_pos[1].x) -
 			(tetrimino.c_pos[2].x + tetrimino.c_pos[3].x)) == -2 ||
 			((tetrimino.c_pos[0].x + tetrimino.c_pos[1].x) -
-			(tetrimino.c_pos[2].x + tetrimino.c_pos[3].x)) == 2)
+			(tetrimino.c_pos[2].x + tetrimino.c_pos[3].x)) == 2))
+		return (1);
+	else if (ft_test_dlm_over(tetrimino))
 		return (1);
 	return (0);
 }
