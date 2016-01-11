@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/11 15:51:58 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 18:34:15 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static	int					ft_statement(char *str, t_tetrimino *tetrimino)
 		(*str == '.' || *str == '#') ? x++ : x;
 		b++;
 	}
-	if (!ft_isvalidchar(*--str) || i > 4 || (b != 21 && b != 20))
+	if (i > 4 || ((b != 21 && *--str != '\0') || (b != 20 && *str != '\n')))
 		return (0);
 	return (1);
 }
