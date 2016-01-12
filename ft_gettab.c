@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/12 13:55:06 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:49:12 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static	int					ft_test(t_tetrimino t)
 
 	tab = (t_tetrimino *)malloc(sizeof(t_tetrimino));
 	tab[0] = (t_tetrimino){.c_pos = {t.c_pos[0], t.c_pos[1],
-			 t.c_pos[2], t.c_pos[3]}, .w_pos = {0, 0},
-			 .next = NULL, .c = t.c};
+			t.c_pos[2], t.c_pos[3]}, .w_pos = {0, 0},
+			.next = NULL, .c = t.c};
 	ft_sort_tetri(&tab, 0, 0, 0);
 	i = 0;
 	while (i < 19)
@@ -42,13 +42,15 @@ static	void				ft_init(int *x, int *y, int *i)
 	*i = 0;
 }
 
-static	int					ft_statement(char *str, t_tetrimino *tetrimino, int b)
+static	int					ft_statement(char *str, t_tetrimino *tetrimino,
+		int b)
 {
 	int						x;
 	int						y;
 	int						i;
 
 	ft_init(&x, &y, &i);
+	str[b] = '\0';
 	while (*++str && i < 5 && (*str == '#' || *str == '.' || *str == '\n'))
 	{
 		if (*str == '\n')
@@ -84,14 +86,11 @@ static int					ft_read(int fd, int i, t_tetrimino **ret, int b)
 				return (0);
 			t = t->next;
 		}
-		t->w_pos.x = 0;
-		t->w_pos.y = 0;
 		if (!(ft_statement(--buf, t, b)))
 			return (0);
 		t->c = 'A' + i++;
 		if (!(ft_test(*t)))
 			return (0);
-		ft_bzero(buf, BUF_S + 1);
 		b_save = b;
 	}
 	if (b_save != 20)
@@ -103,7 +102,7 @@ static int					ft_read(int fd, int i, t_tetrimino **ret, int b)
 int							ft_gettab(const char *path, t_tetrimino **t)
 {
 	int						fd;
-	
+
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (0);
 	return (ft_read(fd, 0, t, 0));

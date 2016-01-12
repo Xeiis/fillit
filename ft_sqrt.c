@@ -6,11 +6,10 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 17:44:37 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/11 16:30:54 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/12 19:39:21 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "fillit.h"
 
 void				ft_affichage_solution(char *map, int min_sqr)
@@ -44,33 +43,4 @@ double				ft_sqrt(double n, double i)
 		return (i / 100);
 	else
 		return (ft_sqrt(n, i + 1));
-}
-
-void				ft_affichage_solution_in_file(char *map, int min_sqr)
-{
-	int				x;
-	int				y;
-	int				i;
-
-	FILE * fichier;	
-	fichier = fopen("result.txt" , "a");
-	y = -1;
-	i = 0;
-	while (++y < min_sqr)
-	{
-		x = -1;
-		while (++x < min_sqr)
-		{
-			if (ft_isupper(map[i]))
-				fprintf(fichier,"%c",map[i++]);
-			else
-			{
-				fprintf(fichier,".");
-				i++;
-			}
-		}
-		fprintf(fichier,"\n");
-	}
-	fprintf(fichier,"\n");
-	fclose(fichier);
 }

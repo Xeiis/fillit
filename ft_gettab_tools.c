@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 16:37:58 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/12 13:53:24 by ldubos           ###   ########.fr       */
+/*   Updated: 2016/01/12 19:42:50 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void				ft_sort_tetri(t_tetrimino **tetri, int x, int y, int i)
 	}
 }
 
-#include <stdio.h>
-
 int					ft_cmp_tetri(t_vector2 *a, t_vector2 *b)
 {
 	if (a[0].x == b[0].x &&
@@ -69,4 +67,21 @@ int					ft_cmp_tetri(t_vector2 *a, t_vector2 *b)
 		a[3].y == b[3].y)
 		return (1);
 	return (0);
+}
+
+int					max_x_line(char *map, int y, int min_sqr)
+{
+	int				i;
+	int				x;
+
+	i = 0;
+	x = -1;
+	while (map[y + i * min_sqr] != '\0')
+	{
+		if (ft_isupper(map[y + i]))
+			if (i > x)
+				x = i;
+		++i;
+	}
+	return (x + 1);
 }
