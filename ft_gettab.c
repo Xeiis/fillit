@@ -23,7 +23,7 @@ static	int					ft_test(t_tetrimino t)
 			 .next = NULL, .c = t.c};
 	ft_sort_tetri(&tab, 0, 0, 0);
 	i = 0;
-	while (i < 24)
+	while (i < 19)
 	{
 		if (ft_cmp_tetri(tab[0].c_pos, (t_vector2 *)&all_t[i++]))
 		{
