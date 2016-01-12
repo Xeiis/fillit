@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:56:22 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/12 19:49:18 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/12 20:01:20 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct			s_tetrimino
 	char				c;
 }						t_tetrimino;
 
-static const t_vector2	all_t[19][4] = {
+static const t_vector2	g_all_t[19][4] = {
 	{
 		{.x = 0, .y = 0},
 		{.x = 1, .y = 0},
@@ -169,7 +169,8 @@ void					ft_init2(int *y, int *ok, int *x);
 int						ft_write_tetri_vector(t_tetrimino *
 		tetrimino, char *map, int min_sqr, int i);
 void					ft_affichage_solution(char *map, int min_sqr);
-void					ft_suppr_tetri_vector(t_tetrimino *t, char *map, int min_sqr);
+void					ft_suppr_tetri_vector(t_tetrimino *t, char *map,
+		int min_sqr);
 int						max_x_line(char *map, int y, int min_sqr);
 int						max_y_line(char *map, int x, int min_sqr);
 int						ft_cmp_tetri(t_vector2 *a, t_vector2 *b);
