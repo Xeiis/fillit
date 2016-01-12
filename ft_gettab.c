@@ -6,41 +6,33 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/11 18:50:14 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:55:06 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static	int					ft_test(t_tetrimino tetrimino, int i)
+static	int					ft_test(t_tetrimino t)
 {
-	int						x_d;
-	int						y_d;
+	int						i;
+	t_tetrimino				*tab;
 
-	while (i < 3)
+	tab = (t_tetrimino *)malloc(sizeof(t_tetrimino));
+	tab[0] = (t_tetrimino){.c_pos = {t.c_pos[0], t.c_pos[1],
+			 t.c_pos[2], t.c_pos[3]}, .w_pos = {0, 0},
+			 .next = NULL, .c = t.c};
+	ft_sort_tetri(&tab, 0, 0, 0);
+	i = 0;
+	while (i < 24)
 	{
-		x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 1].x;
-		y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 1].y;
-		if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
-			(y_d >= -1 && y_d <= 1 && x_d == 0))
-			++i;
-		else if (x_d >= -1 && x_d <= 1 && y_d >= -1 && y_d <= 1)
+		if (ft_cmp_tetri(tab[0].c_pos, (t_vector2 *)&all_t[i++]))
 		{
-			x_d = tetrimino.c_pos[i].x - tetrimino.c_pos[i + 2].x;
-			y_d = tetrimino.c_pos[i].y - tetrimino.c_pos[i + 2].y;
-			if ((x_d >= -1 && x_d <= 1 && y_d == 0) ||
-				(y_d >= -1 && y_d <= 1 && x_d == 0) ||
-				ft_test_dlm(tetrimino, i))
-				++i;
-			else
-				return (0);
+			free(tab);
+			return (1);
 		}
-		else if (ft_test_dlm(tetrimino, i))
-			++i;
-		else
-			return (0);
 	}
-	return (1);
+	free(tab);
+	return (0);
 }
 
 static	void				ft_init(int *x, int *y, int *i)
@@ -97,7 +89,7 @@ static int					ft_read(int fd, int i, t_tetrimino **ret, int b)
 		if (!(ft_statement(--buf, t, b)))
 			return (0);
 		t->c = 'A' + i++;
-		if (!(ft_test(*t, 0)))
+		if (!(ft_test(*t)))
 			return (0);
 		ft_bzero(buf, BUF_S + 1);
 		b_save = b;

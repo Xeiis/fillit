@@ -6,7 +6,7 @@
 /*   By: dchristo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 19:51:45 by dchristo          #+#    #+#             */
-/*   Updated: 2016/01/11 17:53:24 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/11 19:18:47 by ldubos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ int				max_y_tetri(t_tetrimino *tetrimino, int x)
 static int		ft_move_vector(int min_sqr, t_tetrimino *t)
 {
 	t->w_pos.x++;
-	if (t->w_pos.x == min_sqr)
-	{
-		t->w_pos.y++;
-		t->w_pos.x = 0;
-	}
 	if (t->w_pos.y + max_ally_tetri(t) > min_sqr &&
 		t->w_pos.x + max_allx_tetri(t) > min_sqr)
 	{
@@ -96,6 +91,11 @@ static int		ft_move_vector(int min_sqr, t_tetrimino *t)
 		//printf("%d + %d > %d\n",t->w_pos.x, max_allx_tetri(t), min_sqr);
 	//	printf("je sort move vector\n");
 		return (0);
+	}
+	if (t->w_pos.x == min_sqr)
+	{
+		t->w_pos.y++;
+		t->w_pos.x = 0;
 	}
 	return (1);
 }
