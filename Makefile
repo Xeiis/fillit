@@ -6,7 +6,7 @@
 #    By: ldubos <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:26:37 by dchristo          #+#    #+#              #
-#    Updated: 2016/01/05 05:26:28 by dchristo         ###   ########.fr        #
+#    Updated: 2016/01/13 13:59:14 by dchristo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fillit
 
 CC = gcc
 
-FLAGS = #-Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 SRC = $(shell ls -1 | grep "\.c")
 
@@ -44,11 +44,11 @@ $(NAME):
 
 clean:	
 	rm -rf $(OBJS)
-	@cd libft ; $(MAKE) clean -f Makefile
+	make -C libft/ clean
 
 fclean:	clean
 	rm -f $(NAME)
-	@cd libft ; $(MAKE) fclean -f Makefile	
+	make -C libft/ fclean
 	
 re:	fclean all
 

@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:18:39 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/12 20:02:03 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/12 20:18:01 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int			ft_min_sqr(t_tetrimino **tetrimino, int i)
 	return (((int)((ft_sqrt((i * 4), 0.01) + 0.5))));
 }
 
-static int			ft_map(char **map, int min_sqr, int i)
+static int			ft_map(char **map, int min_sqr)
 {
 	free(*map);
 	if ((*map = ft_strnew(min_sqr * min_sqr)) == NULL)
@@ -37,13 +37,13 @@ static int			ft_resolve_it(t_tetrimino *tetrimino, char **map,
 		int min_sqr)
 {
 	min_sqr = ft_min_sqr(&tetrimino, 1);
-	if (!ft_map(map, min_sqr, -1))
+	if (!ft_map(map, min_sqr))
 		return (0);
 	while (((ft_resolve(tetrimino, min_sqr, *map))) != 1)
 	{
 		tetrimino->w_pos = (t_vector2){0, 0};
 		min_sqr++;
-		if (!ft_map(map, min_sqr, -1))
+		if (!ft_map(map, min_sqr))
 			return (0);
 	}
 	return (min_sqr);

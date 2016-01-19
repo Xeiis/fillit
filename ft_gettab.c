@@ -6,7 +6,7 @@
 /*   By: ldubos <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/14 18:36:14 by ldubos            #+#    #+#             */
-/*   Updated: 2016/01/12 19:49:12 by dchristo         ###   ########.fr       */
+/*   Updated: 2016/01/12 20:06:39 by dchristo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	int					ft_test(t_tetrimino t)
 	i = 0;
 	while (i < 19)
 	{
-		if (ft_cmp_tetri(tab[0].c_pos, (t_vector2 *)&all_t[i++]))
+		if (ft_cmp_tetri(tab[0].c_pos, (t_vector2 *)&g_all_t[i++]))
 		{
 			free(tab);
 			return (1);

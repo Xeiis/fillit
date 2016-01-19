@@ -1,8 +1,8 @@
 # Fillit
 Debut 14 Decembre 2015  
-Fin XX XXXX 2016  
-Note : XX  
-Retry : XX  
+Fin 18 Janvier 2016  
+Note : 100
+Retry : 0  
 
 Projet FILLIT @42
 
